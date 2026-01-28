@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Ulang Tahun, Ayah</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      text-align: center;
+    }
+    /* SPLASH SCREEN */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 3s;
+    }
+    #splash h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+    #splash p {
+      opacity: 0.9;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    header {
+      padding: 50px 15px;
+    }
+    header h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+    .card {
+      background: rgba(255,255,255,0.15);
+      margin: 20px auto;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 650px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: #ffd369;
+      color: #000;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background: #ffb703;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 1.05em;
+      display: none;
+    }
+    .gallery {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.08);
+    }
+    footer {
+      margin: 40px 0 20px;
+      font-size: 0.85em;
+      opacity: 0.8;
+    }
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 35px;
+      height: 50px;
+      border-radius: 50%;
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div id="splash">
+    <h1>🎂 Selamat Ulang Tahun Ayah 🎂</h1>
+    <p>❤️</p>
+  </div>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bgm" autoplay loop>
+    <source src="musik.mp3" type="audio/mpeg">
+  </audio>
+
+  <header>
+    <h1>🎉 Selamat Ulang Tahun Ayah 🎉</h1>
+    <p>Terima kasih atas cinta, doa, dan perjuanganmu</p>
+  </header>
+
+  <div class="card">
+    <h2>Untuk Ayah Tercinta</h2>
+    <p>Ayah adalah pahlawan sejati dalam hidup kami. Semoga Ayah selalu sehat, panjang umur, dan bahagia.</p>
+    <button onclick="showMessage()">Klik Pesan Spesial 💌</button>
+    <div id="message">
+      <p>💖 Kami bangga dan sayang Ayah, lebih dari kata-kata 💖</p>
+      <div class="gallery">
+        <img src="ayah-1.png" alt="Ayah" />
+        <img src="ayah-2.png" alt="Ayah & Ibu" />
+        <img src="ayah-3.png" alt="Ayah & Ibu" />
+        <img src="ayah-4.png" alt="Keluarga" />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🎂 Doa Kami</h2>
+    <p>Semoga Allah selalu melindungi Ayah, melimpahkan rezeki, dan memberikan ketenangan di setiap langkah.</p>
+  </div>
+
+  <footer>
+    Dibuat dengan ❤️ oleh anakmu
+  </footer>
+
+  <script>
+    const music = document.getElementById('bgm');
+    document.body.addEventListener('click', () => {
+      music.play().catch(() => {});
+    }, { once: true });
+
+    function showMessage() {
+      const msg = document.getElementById('message');
+      msg.style.display = 'block';
+      createBalloons();
+    }
+
+    function createBalloons() {
+      for (let i = 0; i < 12; i++) {
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        balloon.style.left = Math.random() * 100 + 'vw';
+        balloon.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        balloon.style.animationDuration = 4 + Math.random() * 4 + 's';
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 7000);
+      }
+    }
+  </script>
+
+</body>
+</html>
